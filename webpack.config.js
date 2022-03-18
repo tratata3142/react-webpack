@@ -2,6 +2,7 @@ const path = require('path')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 let mode = 'development'
 let target = 'web'
@@ -11,6 +12,7 @@ const plugins = [
   new HtmlWebpackPlugin({
     template: './src/public/index.html',
   }),
+  new ForkTsCheckerWebpackPlugin(),
 ]
 
 if (process.env.NODE_ENV === 'production') {
@@ -55,7 +57,7 @@ module.exports = {
         type: 'asset/resource',
       },
       {
-        test: /\.jsx?$/,
+        test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -70,7 +72,7 @@ module.exports = {
   target,
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   devServer: {
     contentBase: './dist',
