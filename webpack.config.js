@@ -29,6 +29,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'assets/[hash][ext][query]',
     clean: true,
+    publicPath: '/',
   },
 
   module: {
@@ -73,6 +74,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   devServer: {
+    historyApiFallback: true,
     contentBase: './dist',
     hot: true,
   },
